@@ -1,0 +1,128 @@
+{{#if challengeOne}}
+  <h2 class="bg-alizarin">
+    Challenge 1: <small>Answer the question</small>
+  </h2>
+  <div class="text-content text-center">
+    {{question}}
+    <div class="yes-no">
+      <span><input type="radio" name="answer" value="Yes" /> Yes</span>
+      &nbsp;&nbsp;
+      <span><input type="radio" name="answer" value="No" /> No</span>
+    </div>
+  </div>
+{{/if}}
+
+{{#if challengeTwo}}
+  <h2 class="bg-alizarin">
+    Challenge 2: <small>
+    {{#if multiple}}
+      Look for these items
+    {{else}}
+      Look for this item
+    {{/if}}
+    </small>
+  </h2>
+  {{#if multiple}}
+    <div class="text-content text-center multiple">
+  {{else}}
+    <div class="text-content text-center">
+  {{/if}}
+    {{question}}
+  </div>
+  <div class="text-center">
+    <ul class="choices">
+      {{#if multiple}}
+        {{#each choices}}
+          <li data-value="{{1}}" data-checked='n'>
+            <div class="choice">
+              <div class="check"></div>
+              <img src="assets/img/{{1}}" />
+              <div class="text">{{0}}</div>
+            </div>
+          </li>
+        {{/each}}
+      {{else}}
+        {{#each choices}}
+          <li data-value="{{0}}">
+            <div class="choice">
+              <img src="assets/img/{{1}}" />
+              <div class="text">{{0}}</div>
+            </div>
+          </li>
+        {{/each}}
+      {{/if}}
+    </ul>
+  </div>
+  {{#if multiple}}
+    <div class="actions">
+      <button id="done-mult-choice">Done</button>
+    </div>
+  {{/if}}
+{{/if}}
+
+{{#if challengeThree}}
+  <h2 class="bg-alizarin">
+    Challenge 3: <small>Complete the words</small>
+  </h2>
+  <div class="text-content text-center">
+    {{question}}
+    <br />
+    <div class="complete-words">
+      {{#each lettersArray}}
+        {{#if this}}
+          <span>&nbsp;{{this}}&nbsp;</span>
+        {{else}}
+          <input type="text" />
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="clue text-center">
+    <img src="assets/img/{{clueImage}}" />
+  </div>
+{{/if}}
+
+{{#if challengeFour}}
+  <h2 class="bg-alizarin">
+    Challenge 3: <small>Rearrange the letters</small>
+  </h2>
+  <div class="text-content text-center">
+    {{question}}
+    <br />
+    <strong>{{clueText}}</strong>
+    <br />
+    <div class="arrange-words text-center">
+      <input type='text' />
+    </div>
+  </div>
+  <div class="actions">
+    <button id="done-arrange">Done</button>
+  </div>
+{{/if}}
+
+{{#if showAnswer}}
+  <h2 class="bg-alizarin">
+    Answer: <small>{{answer}}</small>
+  </h2>
+  <div class="text-center">
+    <ul class="answer-images">
+      {{#each answerImages}}
+        <li>
+          <img src="assets/img/{{this}}" />
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{#if info}}
+    <div class="text-content info text-center">
+      {{{info}}}
+    </div>
+  {{/if}}
+  {{#if multiple}}
+    <div class="actions multiple">
+  {{else}}
+    <div class="actions">
+  {{/if}}
+    <button id="ok-next">OK</button>
+  </div>
+{{/if}}

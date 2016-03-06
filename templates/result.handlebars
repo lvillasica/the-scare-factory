@@ -1,0 +1,41 @@
+<div id="result">
+  <div class="msg text-center">
+    {{#if highest}}
+      <h1>
+        Congratulations!
+      </h1>
+      <h2>
+        You've reached the highest score!
+      </h2>
+    {{/if}}
+
+    {{#if passing}}
+      <h1>
+        Congratulations!
+      </h1>
+      <h2>
+        You've gained enough score.
+      </h2>
+    {{/if}}
+
+    {{#if lowest}}
+      <h1>
+        Sorry.
+      </h1>
+      <h2>
+        You failed to gain enough score.
+      </h2>
+    {{/if}}
+  </div>
+  <div class="bottom-actions bg-midnight-blue">
+    <div class="left">
+    </div>
+    <div class="right text-right">
+      {{#if lowest}}
+        <button class="ok btn bg-emerald">OK</button>
+      {{else}}
+        <button class="next btn bg-emerald">PROCEED TO GREENFIELD</button>
+      {{/if}}
+    </div>
+  </div>
+</div>

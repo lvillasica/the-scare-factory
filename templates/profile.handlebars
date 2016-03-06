@@ -1,0 +1,60 @@
+<div id="profile">
+  <div class="box about bg-concrete">
+    <div class="box-note bg-alizarin">
+      About yourself
+    </div>
+    <div class="input-group">
+      <label>Name <br />
+        <input type="text" name="player[name]" value="{{player.name}}" />
+      </label>
+    </div>
+    <div class="input-group">
+      <label>Age <br />
+        <input type="text" name="player[age]" value="{{player.age}}" />
+      </label>
+    </div>
+    <div class="input-group">
+      <label>Sex <br />
+        <input type="radio" name="player[sex]" value="m" {{isRadioChecked player.isMale}} /> Male <br />
+        <input type="radio" name="player[sex]" value="f" {{isRadioChecked player.isFemale}} /> Female
+      </label>
+    </div>
+  </div>
+  <div class="box avatar bg-concrete">
+    <div class="box-note bg-alizarin">
+      Choose
+    </div>
+    <div class="input-group text-center">
+      <img src="assets/img/{{name}}.png">
+    </div>
+    <div class="input-group text-center avatar-controls">
+      <button id="avatar-prev">&#8610; Prev</button>&nbsp;
+      <strong id="avatar-name">{{name}}</strong>&nbsp;
+      <button id="avatar-next">Next &#8611;</button>
+    </div>
+  </div>
+  <div class="box question bg-concrete">
+    <div class="box-note bg-alizarin">
+      Answer these questions
+    </div>
+    <div class="input-group text-larger">
+      <label>Do you currently smoke? <br />
+        <input type="radio" name="smoker" value="y" {{isRadioChecked smokerStatus.active}} /> Yes &nbsp;&nbsp;
+        <input type="radio" name="smoker" value="n" {{isRadioChecked smokerStatus.inactive}} /> No
+      </label>
+    </div>
+    <div class="input-group text-larger">
+      <label>Do you plan to quit smoking? <br />
+        <input type="radio" name="to_quit_smoking" value="y" {{isRadioChecked smokerStatus.toQuit}} /> Yes &nbsp;&nbsp;
+        <input type="radio" name="to_quit_smoking" value="n" {{isRadioChecked smokerStatus.notoQuit}} /> No
+      </label>
+    </div>
+  </div>
+  <div class="bottom-actions bg-midnight-blue">
+    <div class="left">
+    </div>
+    <div class="right text-right">
+      <button class="ok btn bg-emerald">OK</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div id="finale">
+  {{#if first}}
+    <div class="share text-center">
+      Will you share the information about smoking?
+      <br />
+      <input type="radio" name="share" value="y" /> Yes
+      &nbsp;&nbsp;
+      <input type="radio" name="share" value="n" /> No
+    </div>
+    <div class="with-whom text-center">
+      With whom?
+      <input type="text" name="player[friend]" />
+    </div>
+  {{/if}}
+
+  {{#if second}}
+    <div class="plan-to-quit text-center">
+      Do you plan to quit smoking?
+      <br />
+      <input type="radio" name="smoker" value="y" /> Yes
+      &nbsp;&nbsp;
+      <input type="radio" name="to_quit_smoking" value="n" /> No
+    </div>
+  {{/if}}
+  <div class="bottom-actions bg-midnight-blue">
+    <div class="left">
+    </div>
+    <div class="right text-right">
+      <button class="next-{{number}} btn bg-emerald">NEXT</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+(function() {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['instructions'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<div id=\"instructions\">\n  <h1 class=\"text-center\">INSTRUCTIONS</h1>\n  <div class=\"box peace-keepers bg-concrete\">\n    <img src=\"assets/img/peace-keepers.png\" class=\"hover-zoom\">\n    <div class=\"box-note bg-alizarin\">\n      Oxygen Keepers\n    </div>\n  </div>\n  <div class=\"box the-factory bg-concrete\">\n    <img src=\"assets/img/factory.png\" class=\"hover-zoom\">\n    <div class=\"box-note bg-alizarin\">\n      Inside the factory\n    </div>\n  </div>\n  <div class=\"bottom-actions bg-midnight-blue\">\n    <div class=\"left\">\n      <button class=\"quit btn bg-clouds\">QUIT</button>\n    </div>\n    <div class=\"right text-right\">\n      <button class=\"next btn bg-emerald\">NEXT</button>\n    </div>\n  </div>\n</div>";
+},"useData":true});
+})();
