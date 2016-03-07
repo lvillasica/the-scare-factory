@@ -339,6 +339,15 @@ div.callout {
 
 /* room */
 
+#room .name {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 50px;
+  font-size: 20pt;
+  font-weight: bolder;
+}
+
 #room[data-number="1"] {
   background: url('../img/room-1.jpg') 0px 0px/1024px 725px;
   height: 100%;
@@ -485,8 +494,61 @@ div.callout {
 #green-field {
   background: url('../img/greenfield.jpg') 0px 0px/1024px 725px;
   height: 100%;
+  padding: 100px 0;
+}
+
+#green-field .popup {
+  height: 300px;
+  width: 500px;
+  margin: 0px auto !important;
+  position: inherit;
+}
+
+#green-field .popup h1 {
+  padding: 50px;
 }
 
 /* end green-field */
+
+/* finale */
+
+#finale .content {
+  margin: 100px auto;
+  font-size: 20pt;
+  background-color: #e74c3c;
+  padding: 20px;
+  width: 500px;
+}
+
+#finale .with-whom {
+  border-top: 1px solid #fff;
+  padding: 15px;
+  margin: 15px;
+}
+
+#finale .with-whom input {
+  font-size: 20pt;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  border: none;
+  border-bottom: 2px solid #fff;
+  font-family: fantasy;
+  text-align: center;
+}
+
+#finale .summary h1 {
+  margin: 0;
+  font-size: 20pt;
+  border-bottom: 1px solid #fff;
+}
+
+#finale .the-end {
+  font-size: 150px;
+  margin: 100px auto;
+  width: 500px;
+  text-align: center;
+}
+
+/* end finale */
 
 /* end specific */

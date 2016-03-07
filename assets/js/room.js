@@ -311,7 +311,11 @@ var Room = function (game, number) {
   this.startChallenges = function () {
     scope.loadChallenges();
     currentChallenge = challengesStack.pop();
-    scope.showCurrentChallenge();
+    setTimeout(function () {
+      $('#room .name').fadeOut('slow');
+      $('#room .avatar').fadeIn('slow');
+      scope.showCurrentChallenge();
+    }, 2000);
   };
 
   this.showScore = function () {
@@ -345,5 +349,20 @@ var Room = function (game, number) {
       scorePerChallenge.push(score);
       scope.showCurrentChallenge();
     });
+  };
+
+  switch (number) {
+    case 1:
+      scope.name = "Physically-deformed Room";
+      break;
+    case 2:
+      scope.name = "Diseased Heart Room";
+      break;
+    case 3:
+      scope.name = "Lung Ailments Room";
+      break;
+    case 4:
+      scope.name = "Cancer Room";
+      break;
   };
 };

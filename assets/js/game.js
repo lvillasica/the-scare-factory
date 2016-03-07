@@ -71,8 +71,10 @@ var Game = function () {
   };
 
   this.enterRoom = function (n) {
-    scope.loadTmpl('room', {number: n}, function () {
-      var room = new Room(scope, n);
+    var context = {number: n, avatarName: scope.avatar.name};
+    var room = new Room(scope, n);
+    context.name = room.name;
+    scope.loadTmpl('room', context, function () {
       room.startChallenges();
     });
   };
@@ -83,7 +85,7 @@ var Game = function () {
         $('#green-field .popup').fadeIn('slow', function () {
           setTimeout(function () {
             scope.showFinale(1);
-          }, 1000);
+          }, 3000);
         });
       }, 1000);
     });
@@ -120,7 +122,7 @@ var Game = function () {
   };
 
   this.end = function () {
-    $('main-panel').fadeOut(function () {
+    $('#main-panel #finale').fadeOut(function () {
       $(this).html('<div class="the-end">THE END</div>').fadeIn();
     });
   };
@@ -395,32 +397,35 @@ Finale = function (game) {
   var cont = $('#finale');
   var actions = {
     next1 : cont.find('button.next-1'),
-    next2 : cont.find('button.next-2')
+    next2 : cont.find('button.next-2'),
+    done  : cont.find('button.done')
   };
 
   var summary = "";
-  summary += "Avatar: <strong>" + avatar.name + "</strong><br />";
-  summary += "Player Name: <strong>" + avatar.player.name + "</strong><br />";
-  summary += "Player Age: <strong>" + avatar.player.age + "</strong><br />";
-  summary += "Player Sex: <strong>" + avatar.player.sex + "</strong><br />";
-  summary += "Smoker?: <strong>" + avatar.smokerStatus.active + "</strong><br />";
-  summary += "Plans to quit?: <strong>" + avatar.smokerStatus.toQuit + "</strong><br />";
-  summary += "Will share this to: <strong>" + avatar.player.friend + "</strong><br />";
 
   this.loadEvents = function () {
     actions.next1.on('click', $.proxy(scope.onNext1, scope));
     actions.next2.on('click', $.proxy(scope.onNext2, scope));
+    actions.done.on('click', $.proxy(game.end, game));
+    cont.find('input[name="share"]').on('change', $.proxy(scope.onSetShare, scope));
     cont.find('input').on('blur', $.proxy(scope.onBlurInput, scope));
+  };
+
+  this.onSetShare = function (e) {
+    e.preventDefault();
+    if (cont.find('input[name="share"]:checked').val() == 'y') {
+      cont.find('.content .with-whom').fadeIn();
+    } else {
+      cont.find('[name="player[friend]"]').val('');
+      avatar.player.friend = cont.find('[name="player[friend]"]').val();
+      cont.find('.content .with-whom').fadeOut();
+    }
   };
 
   this.onBlurInput = function (e) {
     e.preventDefault();
-    avatar.setPlayerFriend();
+    avatar.player.friend = avatar.player.friend || cont.find('[name="player[friend]"]').val();
     avatar.setSmokerStats(scope.getSmokerStats());
-  };
-
-  this.setPlayerFriend = function () {
-    avatar.player.friend = cont.find('[name="player[friend]"]').val();
   };
 
   this.getSmokerStats = function () {
@@ -432,7 +437,7 @@ Finale = function (game) {
 
   this.onNext1 = function (e) {
     e.preventDefault();
-    if (avatar.smokerStatus.active && avatar.smokerStatus.notoQuit) {
+    if (avatar.smokerStatus.active && avatar.smokerStatus.toQuit !== true) {
       game.showFinale(2);
     } else {
       scope.showSummary();
@@ -445,10 +450,17 @@ Finale = function (game) {
   };
 
   this.showSummary = function () {
-    swal({
-      title : 'Game Summary',
-      text : summary,
-      html : true,
-    }, game.end);
+    summary += "Avatar: <strong>" + (avatar.name || 'None') + "</strong><br />";
+    summary += "Player Name: <strong>" + (avatar.player.name || 'None') + "</strong><br />";
+    summary += "Player Age: <strong>" + (avatar.player.age || 'None') + "</strong><br />";
+    summary += "Player Sex: <strong>" + (avatar.player.sex || 'None') + "</strong><br />";
+    summary += "Smoker?: <strong>" + (avatar.smokerStatus.active || 'N/A') + "</strong><br />";
+    summary += "Plans to quit?: <strong>" + (avatar.smokerStatus.toQuit || 'N/A') + "</strong><br />";
+    summary += "Will share this to: <strong>" + (avatar.player.friend || 'None') + "</strong><br />";
+    summary += "Total score: <strong>" + avatar.totalScore + "</strong><br />";
+    cont.find('.content').hide().html('<div class="summary"><h1>Summary</h1>' + summary + '</div>').fadeIn();
+    actions.next1.hide();
+    actions.next2.hide();
+    actions.done.fadeIn();
   };
 };
