@@ -9,6 +9,10 @@ var Game = function () {
 
   this.avatar = avatar;
 
+  this.begin = function () {
+    scope.showSplashScreen();
+  };
+
   this.showSplashScreen = function () {
     scope.loadTmpl('splash-screen', {}, function () {
       var sc = new SplashScreen(scope);

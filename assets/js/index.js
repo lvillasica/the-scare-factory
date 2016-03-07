@@ -5,5 +5,5 @@ Handlebars.registerHelper('isRadioChecked', function (bool) {
 $(function () {
   sweetAlertInitialize();
   var game = new Game();
-  game.showSplashScreen();
+  game.begin();
 });
